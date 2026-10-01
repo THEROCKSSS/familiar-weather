@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Familiar Weather</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">⛅</span>
+      <span class="brand-name">Familiar Weather</span>
+      <span class="data-badge">LIVE DATA</span>
+    </div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search a city…" autocomplete="off" spellcheck="false">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+    <div class="topbar-actions">
+      <button id="geo-btn" class="ghost-btn" title="Use my location">◎ My location</button>
+      <button id="unit-btn" class="ghost-btn" title="Toggle units">°F</button>
+      <button id="theme-btn" class="ghost-btn" title="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <nav class="loc-bar" id="loc-bar"><!-- saved location chips injected here --></nav>
+
+  <main class="main">
+    <section class="panel current-panel" id="current-panel">
+      <div class="panel-status" id="current-status">Loading forecast…</div>
+      <div id="current-body"></div>
+    </section>
+
+    <section class="panel brief-panel" id="brief-panel" hidden></section>
+
+    <section class="panel hourly-panel">
+      <h2 class="panel-title">Next 24 hours</h2>
+      <div class="hourly-scroll" id="hourly-chart">
+        <div class="panel-status">Loading…</div>
+      </div>
+    </section>
+
+    <section class="panel daily-panel">
+      <h2 class="panel-title">10-day outlook</h2>
+      <div class="daily-list" id="daily-list">
+        <div class="panel-status">Loading…</div>
+      </div>
+    </section>
+
+    <section class="panel radar-panel">
+      <div class="radar-head">
+        <h2 class="panel-title">Radar</h2>
+        <div class="radar-controls">
+          <button id="radar-play" class="ghost-btn" disabled>▶ Play</button>
+          <span id="radar-time" class="radar-time"></span>
+        </div>
+      </div>
+      <div id="radar-map" class="radar-map"></div>
+      <div class="panel-status" id="radar-status">Radar tiles: RainViewer (free)</div>
+    </section>
+
+    <section class="panel src-panel">
+      <h2 class="panel-title">Data sources — all free, no API keys</h2>
+      <ul class="src-list">
+        <li><a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> — forecasts</li>
+        <li><a href="https://www.rainviewer.com" target="_blank" rel="noopener">RainViewer</a> — radar tiles</li>
+        <li><a href="https://nominatim.org" target="_blank" rel="noopener">Nominatim / OpenStreetMap</a> — city search</li>
+      </ul>
+      <p class="src-note">Self-hosted. Your locations stay in this browser (localStorage). No accounts, no tracking.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Familiar Weather · free-data weather you can run yourself · <a href="https://github.com/THEROCKSSS" target="_blank" rel="noopener">by Owen</a>
+  </footer>
+</div>
+<div id="tooltip" class="tooltip" hidden></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
